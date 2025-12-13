@@ -1,0 +1,78 @@
+name: test actions/restore
+
+on:
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  default:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/setup
+        with:
+          dotnet-version: '9.x'
+
+      - uses: ./.github/actions/restore
+
+
+  OS__matrix:
+    needs: default
+    strategy:
+      max-parallel: 6
+      fail-fast: false
+      matrix:
+        include:
+          - windows:
+              OS: windows-latest
+              ls_cli_arguments: ''
+
+          - macos:
+              OS: macos-latest
+
+    runs-on: ${{ matrix.OS }}
+    steps:
+      - uses: ./.github/actions/setup
+        with:
+          dotnet-version: '9.x'
+
+      - uses: ./.github/actions/restore
+        with:
+          ls_cli_arguments: ${{ matrix.ls_cli_arguments }}
+
+
+  project_type__matrix:
+    needs: default
+    strategy:
+      max-parallel: 6
+      fail-fast: false
+      matrix:
+        include:
+          - sln:
+              project-type: sln
+              dotnet-version: '8.x'
+
+          - slnx:
+              project-type: slnx
+              dotnet-version: '9.x'
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/setup
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - uses: ./.github/actions/restore
+        with:
+          working-directory: assets/dotnet/${{ matrix.project-type }}
