@@ -35,12 +35,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - windows:
-              OS: windows-latest
-              ls_cli_arguments: ""
+          - OS: macos-latest
 
-          - macos:
-              OS: macos-latest
+          - OS: windows-latest
+            ls_cli_arguments: ""
 
     runs-on: ${{ matrix.OS }}
     name: "dotnet restore @ ${{ matrix.OS }}"
@@ -62,13 +60,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - sln:
-              project-type: sln
-              dotnet-version: "8.x"
+          - project-type: sln
+            dotnet-version: "8.x"
 
-          - slnx:
-              project-type: slnx
-              dotnet-version: "9.x"
+          - project-type: slnx
+            dotnet-version: "9.x"
 
     runs-on: ubuntu-latest
     name: "dotnet restore *.${{ matrix.project-type }}"
