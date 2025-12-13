@@ -53,21 +53,27 @@ jobs:
         with:
           ls_cli_arguments: ${{ matrix.ls_cli_arguments }}
 
-  project_type__matrix:
+  project__matrix:
     needs: default
     strategy:
       max-parallel: 6
       fail-fast: false
       matrix:
         include:
-          - project-type: sln
+          - project-name: SemanticKernelSampler
+            project-type: sln
             dotnet-version: "8.x"
 
-          - project-type: slnx
+          - project-name: AgentFrameworkSampler
+            project-type: slnx
             dotnet-version: "9.x"
 
+          - project-name: console
+            project-type: slnx
+            dotnet-version: "10.x"
+
     runs-on: ubuntu-latest
-    name: "dotnet restore *.${{ matrix.project-type }}"
+    name: "dotnet restore ${{ matrix.project-name }}/*.${{ matrix.project-type }}"
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
 
@@ -77,5 +83,5 @@ jobs:
 
       - uses: ./.github/actions/restore
         with:
-          working-directory: assets/dotnet/${{ matrix.project-type }}
-          dotnet_project: "*.${{ matrix.project-type }}"
+          working-directory: assets/dotnet/${{ matrix.project-name }}
+          # dotnet_project: "*.${{ matrix.project-type }}"
