@@ -42,6 +42,7 @@ jobs:
               OS: macos-latest
 
     runs-on: ${{ matrix.OS }}
+    name: "dotnet build @ ${{ matrix.OS }}"
     steps:
       - uses: percebus/github-actions-dotnet/.github/actions/setup@main
         with:
@@ -69,6 +70,7 @@ jobs:
               dotnet-version: "9.x"
 
     runs-on: ubuntu-latest
+    name: "dotnet build *.${{ matrix.project-type }}"
     steps:
       - uses: percebus/github-actions-dotnet/.github/actions/setup@main
         with:
