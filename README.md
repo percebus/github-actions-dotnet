@@ -6,3 +6,13 @@
 [`LICENSE`](./LICENSE)
 
 GitHub re-usable Actions &amp; Workflows
+
+## GitHub
+
+### Actions
+
+| name                                   | test                                                                                                                                                                                                                              |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`setup`](./.github/actions/setup)     | [![test actions/setup](https://github.com/percebus/github-actions-dotnet/actions/workflows/test_actions__setup.yml/badge.svg)](https://github.com/percebus/github-actions-dotnet/actions/workflows/test_actions__setup.yml)       |
+| [`restore`](./.github/actions/restore) | [![test actions/restore](https://github.com/percebus/github-actions-dotnet/actions/workflows/test_actions__restore.yml/badge.svg)](https://github.com/percebus/github-actions-dotnet/actions/workflows/test_actions__restore.yml) |
+| [`build`](./.github/actions/build)     | [![test actions/build](https://github.com/percebus/github-actions-dotnet/actions/workflows/test_actions__build.yml/badge.svg)](https://github.com/percebus/github-actions-dotnet/actions/workflows/test_actions__build.yml)       |
