@@ -20,7 +20,9 @@ jobs:
   default:
     runs-on: ubuntu-latest
     steps:
-      - uses: percebus/github-actions-dotnet/.github/actions/setup@main
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      - uses: ./.github/actions/setup
         with:
           dotnet-version: "10.x"
 
@@ -39,8 +41,10 @@ jobs:
           # - "latest" # Does NOT work
 
     runs-on: ubuntu-latest
-    name: dotnet@${{ matrix.dotnet-version }}
+    name: dotnet @ ${{ matrix.dotnet-version }}
     steps:
-      - uses: percebus/github-actions-dotnet/.github/actions/setup@main
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      - uses: ./.github/actions/setup
         with:
           dotnet-version: ${{ matrix.dotnet-version }}

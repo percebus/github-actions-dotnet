@@ -20,11 +20,13 @@ jobs:
   default:
     runs-on: ubuntu-latest
     steps:
-      - uses: percebus/github-actions-dotnet/.github/actions/setup@main
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      - uses: ./.github/actions/setup
         with:
           dotnet-version: "9.x"
 
-      - uses: percebus/github-actions-dotnet/.github/actions/restore@main
+      - uses: ./.github/actions/restore
 
   OS__matrix:
     needs: default
@@ -33,46 +35,53 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - windows:
-              OS: windows-latest
-              ls_cli_arguments: ""
+          - OS: macos-latest
 
-          - macos:
-              OS: macos-latest
+          - OS: windows-latest
+            ls_cli_arguments: ""
 
     runs-on: ${{ matrix.OS }}
     name: "dotnet restore @ ${{ matrix.OS }}"
     steps:
-      - uses: percebus/github-actions-dotnet/.github/actions/setup@main
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      - uses: ./.github/actions/setup
         with:
           dotnet-version: "9.x"
 
-      - uses: percebus/github-actions-dotnet/.github/actions/restore@main
+      - uses: ./.github/actions/restore
         with:
           ls_cli_arguments: ${{ matrix.ls_cli_arguments }}
 
-  project_type__matrix:
+  project__matrix:
     needs: default
     strategy:
       max-parallel: 6
       fail-fast: false
       matrix:
         include:
-          - sln:
-              project-type: sln
-              dotnet-version: "8.x"
+          - project-name: SemanticKernelSampler
+            project-type: sln
+            dotnet-version: "8.x"
 
-          - slnx:
-              project-type: slnx
-              dotnet-version: "9.x"
+          - project-name: AgentFrameworkSampler
+            project-type: slnx
+            dotnet-version: "9.x"
+
+          - project-name: console
+            project-type: csproj
+            dotnet-version: "10.x"
 
     runs-on: ubuntu-latest
-    name: "dotnet restore *.${{ matrix.project-type }}"
+    name: "dotnet restore ${{ matrix.project-name }}/*.${{ matrix.project-type }}"
     steps:
-      - uses: percebus/github-actions-dotnet/.github/actions/setup@main
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      - uses: ./.github/actions/setup
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
 
-      - uses: percebus/github-actions-dotnet/.github/actions/restore@main
+      - uses: ./.github/actions/restore
         with:
-          working-directory: assets/dotnet/${{ matrix.project-type }}
+          working-directory: assets/dotnet/${{ matrix.project-name }}
+          dotnet_project: "*.${{ matrix.project-type }}"
