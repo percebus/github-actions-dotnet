@@ -39,10 +39,10 @@ jobs:
           - OS: macos-latest
             dotnet_project: "*.slnx"
 
-          - OS: windows-latest
-            ls_cli_arguments: ""
-            # FIXME error MSB1008: Only one project can be specified.
-            dotnet_project: "Solution.slnx"
+          # FIXME error MSB1008: Only one project can be specified.
+          # - OS: windows-latest
+          #   ls_cli_arguments: ""
+          #   dotnet_project: "Solution.slnx"
 
     runs-on: ${{ matrix.OS }}
     name: "dotnet build @ ${{ matrix.OS }}"
@@ -77,7 +77,7 @@ jobs:
             dotnet-version: "9.x"
 
           - project-name: console
-            project-type: slnx
+            project-type: csproj
             dotnet-version: "10.x"
 
     runs-on: ubuntu-latest

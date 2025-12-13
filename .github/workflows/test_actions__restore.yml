@@ -69,7 +69,7 @@ jobs:
             dotnet-version: "9.x"
 
           - project-name: console
-            project-type: slnx
+            project-type: csproj
             dotnet-version: "10.x"
 
     runs-on: ubuntu-latest
