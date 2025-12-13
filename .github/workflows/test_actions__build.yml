@@ -20,7 +20,7 @@ jobs:
   default:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/actions/setup
+      - uses: percebus/github-actions-dotnet/.github/actions/setup@main
         with:
           dotnet-version: "9.x"
 
@@ -43,7 +43,7 @@ jobs:
 
     runs-on: ${{ matrix.OS }}
     steps:
-      - uses: ./.github/actions/setup
+      - uses: percebus/github-actions-dotnet/.github/actions/setup@main
         with:
           dotnet-version: "9.x"
 
@@ -70,7 +70,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/actions/setup
+      - uses: percebus/github-actions-dotnet/.github/actions/setup@main
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
 
