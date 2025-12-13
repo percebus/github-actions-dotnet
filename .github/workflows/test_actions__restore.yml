@@ -84,4 +84,4 @@ jobs:
       - uses: ./.github/actions/restore
         with:
           working-directory: assets/dotnet/${{ matrix.project-name }}
-          # dotnet_project: "*.${{ matrix.project-type }}"
+          dotnet_project: "*.${{ matrix.project-type }}"
