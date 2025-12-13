@@ -25,6 +25,7 @@ jobs:
           dotnet-version: "9.x"
 
       - uses: ./.github/actions/restore
+      - uses: ./.github/actions/build
 
   OS__matrix:
     needs: default
@@ -50,6 +51,8 @@ jobs:
         with:
           ls_cli_arguments: ${{ matrix.ls_cli_arguments }}
 
+      - uses: ./.github/actions/build
+
   project_type__matrix:
     needs: default
     strategy:
@@ -72,5 +75,9 @@ jobs:
           dotnet-version: ${{ matrix.dotnet-version }}
 
       - uses: ./.github/actions/restore
+        with:
+          working-directory: assets/dotnet/${{ matrix.project-type }}
+
+      - uses: ./.github/actions/build
         with:
           working-directory: assets/dotnet/${{ matrix.project-type }}
