@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: percebus/github-actions-dotnet/.github/actions/setup@main
         with:
-          dotnet-version: "latest"
+          dotnet-version: "10.x"
 
   dotnet-version__matrix:
     needs: default
@@ -36,7 +36,7 @@ jobs:
           - "8.x"
           # - "9.x"
           - "10.x"
-          - "latest"
+          # - "latest" # Does NOT work
 
     runs-on: ubuntu-latest
     steps:
