@@ -24,7 +24,7 @@ jobs:
         with:
           dotnet-version: "9.x"
 
-      - uses: ./.github/actions/restore
+      - uses: percebus/github-actions-dotnet/.github/actions/restore@main
       - uses: ./.github/actions/build
 
   OS__matrix:
@@ -47,7 +47,7 @@ jobs:
         with:
           dotnet-version: "9.x"
 
-      - uses: ./.github/actions/restore
+      - uses: percebus/github-actions-dotnet/.github/actions/restore@main
         with:
           ls_cli_arguments: ${{ matrix.ls_cli_arguments }}
 
@@ -74,7 +74,7 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
 
-      - uses: ./.github/actions/restore
+      - uses: percebus/github-actions-dotnet/.github/actions/restore@main
         with:
           working-directory: assets/dotnet/${{ matrix.project-type }}
 
