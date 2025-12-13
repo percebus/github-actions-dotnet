@@ -1,0 +1,36 @@
+{
+  "name": "github-actions-dotnet",
+  "version": "0.1.0",
+  "description": "GitHub re-usable Actions & Workflows",
+  "keywords": [
+    "GitHub",
+    "actions",
+    "workflows",
+    "dotnet"
+  ],
+  "homepage": "https://github.com/percebus/github-actions-dotnet#readme",
+  "bugs": {
+    "url": "https://github.com/percebus/github-actions-dotnet/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/percebus/github-actions-dotnet.git"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "author": "JCystems",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "_prettier": "prettier .",
+    "prettier:check": "npm run _prettier -- --check",
+    "prettier:write": "npm run _prettier -- --write",
+    "lint": "npm run prettier:check",
+    "format": "npm run prettier:write",
+    "postformat": "npm run lint",
+    "style": "npm run format",
+    "test": "exit 0"
+  },
+  "devDependencies": {
+    "prettier": "^3.7.4"
+  }
+}
