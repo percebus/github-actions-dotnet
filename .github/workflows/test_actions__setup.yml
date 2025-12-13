@@ -41,7 +41,7 @@ jobs:
           # - "latest" # Does NOT work
 
     runs-on: ubuntu-latest
-    name: dotnet@${{ matrix.dotnet-version }}
+    name: dotnet @ ${{ matrix.dotnet-version }}
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
 
