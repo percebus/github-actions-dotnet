@@ -16,7 +16,7 @@ inputs:
   dotnet_project:
     description: Dotnet project to restore
     required: false
-    default: "*.sln(x)?"
+    default: "*.slnx"
 
 runs:
   using: composite
