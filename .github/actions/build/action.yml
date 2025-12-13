@@ -1,0 +1,34 @@
+name: dotnet_build
+description: Build dotnet projects
+
+inputs:
+  working-directory:
+    description: Working directory
+    required: false
+    default: "."
+
+  dotnet_project:
+    description: Dotnet project to build
+    required: false
+    default: "*.slnx?"
+
+  dotnet_configuration:
+    description: Dotnet build configuration
+    required: false
+    default: "Debug"
+
+  dotnet_build_cli_options:
+    description: Additional dotnet build CLI options
+    required: false
+    default: "--no-restore /p:TreatWarningsAsErrors=true"
+
+runs:
+  using: composite
+  steps:
+    - name: dotnet build ${{ inputs.dotnet_project }}:${{ inputs.dotnet_configuration }}
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      run: |
+        dotnet build ${{ inputs.dotnet_project }} \
+          ${{ inputs.dotnet_build_cli_options }} \
+          --configuration ${{ inputs.dotnet_configuration }}

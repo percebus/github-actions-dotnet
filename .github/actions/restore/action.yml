@@ -1,0 +1,32 @@
+name: dotnet_restore
+description: Restore dotnet packages
+
+inputs:
+  working-directory:
+    description: Working directory
+    required: false
+    default: "."
+
+  # NOTE: some of these don't work in windows
+  ls_cli_arguments:
+    description: Additional ls CLI arguments
+    required: false
+    default: "-la"
+
+  dotnet_project:
+    description: Dotnet project to restore
+    required: false
+    default: "*.slnx?"
+
+runs:
+  using: composite
+  steps:
+    - name: ls ${{ inputs.working-directory }}
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      run: ls ${{ inputs.ls_cli_arguments }}
+
+    - name: dotnet restore ${{ inputs.dotnet_project }}
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      run: dotnet restore ${{ inputs.dotnet_project }}
