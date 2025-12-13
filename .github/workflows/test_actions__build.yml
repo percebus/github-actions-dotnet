@@ -37,6 +37,7 @@ jobs:
       matrix:
         include:
           - OS: macos-latest
+            dotnet_project: "*.slnx"
 
           - OS: windows-latest
             ls_cli_arguments: ""
@@ -57,6 +58,8 @@ jobs:
           ls_cli_arguments: ${{ matrix.ls_cli_arguments }}
 
       - uses: ./.github/actions/build
+        with:
+          dotnet_project: ${{ matrix.dotnet_project }}
 
   project_type__matrix:
     needs: default
