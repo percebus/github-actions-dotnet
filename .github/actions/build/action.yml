@@ -10,7 +10,7 @@ inputs:
   dotnet_project:
     description: Dotnet project to build
     required: false
-    default: "*.slnx"
+    default: "*.sln*"
 
   dotnet_configuration:
     description: Dotnet build configuration

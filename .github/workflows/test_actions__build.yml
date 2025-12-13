@@ -40,6 +40,8 @@ jobs:
 
           - OS: windows-latest
             ls_cli_arguments: ""
+            # FIXME error MSB1008: Only one project can be specified.
+            dotnet_project: "Solution.slnx"
 
     runs-on: ${{ matrix.OS }}
     name: "dotnet build @ ${{ matrix.OS }}"
