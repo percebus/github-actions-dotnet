@@ -1,3 +1,30 @@
+
+tmp/
+
+# NOTE vvv DO NOT EDIT BELOW
+# Copy paste where applicable
+
+
+##################################
+### VisualStudioCode.gitignore ### SRC: https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
+##################################
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+!*.code-workspace
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+
+######################
+### Node.gitignore ### SRC: https://github.com/github/gitignore/blob/main/Node.gitignore
+######################
+
 # Logs
 logs
 *.log
@@ -81,6 +108,7 @@ out
 # Nuxt.js build / generate output
 .nuxt
 dist
+.output
 
 # Gatsby files
 .cache/
@@ -134,6 +162,7 @@ dist
 !.yarn/sdks
 !.yarn/versions
 
-# Vite logs files
+# Vite files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+.vite/
