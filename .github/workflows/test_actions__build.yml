@@ -20,11 +20,11 @@ jobs:
   default:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/actions/setup
+      - uses: percebus/github-actions-dotnet/.github/actions/setup@main
         with:
           dotnet-version: "9.x"
 
-      - uses: ./.github/actions/restore
+      - uses: percebus/github-actions-dotnet/.github/actions/restore@main
       - uses: ./.github/actions/build
 
   OS__matrix:
@@ -42,12 +42,13 @@ jobs:
               OS: macos-latest
 
     runs-on: ${{ matrix.OS }}
+    name: "dotnet build @ ${{ matrix.OS }}"
     steps:
-      - uses: ./.github/actions/setup
+      - uses: percebus/github-actions-dotnet/.github/actions/setup@main
         with:
           dotnet-version: "9.x"
 
-      - uses: ./.github/actions/restore
+      - uses: percebus/github-actions-dotnet/.github/actions/restore@main
         with:
           ls_cli_arguments: ${{ matrix.ls_cli_arguments }}
 
@@ -69,12 +70,13 @@ jobs:
               dotnet-version: "9.x"
 
     runs-on: ubuntu-latest
+    name: "dotnet build *.${{ matrix.project-type }}"
     steps:
-      - uses: ./.github/actions/setup
+      - uses: percebus/github-actions-dotnet/.github/actions/setup@main
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
 
-      - uses: ./.github/actions/restore
+      - uses: percebus/github-actions-dotnet/.github/actions/restore@main
         with:
           working-directory: assets/dotnet/${{ matrix.project-type }}
 

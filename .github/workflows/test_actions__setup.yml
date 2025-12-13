@@ -20,6 +20,27 @@ jobs:
   default:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/actions/setup
+      - uses: percebus/github-actions-dotnet/.github/actions/setup@main
         with:
-          dotnet-version: "9.x"
+          dotnet-version: "10.x"
+
+  dotnet-version__matrix:
+    needs: default
+    strategy:
+      max-parallel: 6
+      fail-fast: false
+      matrix:
+        dotnet-version:
+          - "6.x"
+          - "7.x"
+          - "8.x"
+          # - "9.x"
+          - "10.x"
+          # - "latest" # Does NOT work
+
+    runs-on: ubuntu-latest
+    name: dotnet@${{ matrix.dotnet-version }}
+    steps:
+      - uses: percebus/github-actions-dotnet/.github/actions/setup@main
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
