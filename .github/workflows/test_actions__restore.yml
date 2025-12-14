@@ -16,6 +16,9 @@ concurrency:
 permissions:
   contents: read
 
+env:
+  DOTNET_VERSION: "9.x"
+
 jobs:
   default:
     runs-on: ubuntu-latest
@@ -24,7 +27,7 @@ jobs:
 
       - uses: ./.github/actions/setup
         with:
-          dotnet-version: "9.x"
+          dotnet-version: "${{ env.DOTNET_VERSION }}"
 
       - uses: ./.github/actions/restore
 
@@ -47,7 +50,7 @@ jobs:
 
       - uses: ./.github/actions/setup
         with:
-          dotnet-version: "9.x"
+          dotnet-version: "${{ env.DOTNET_VERSION }}"
 
       - uses: ./.github/actions/restore
         with:

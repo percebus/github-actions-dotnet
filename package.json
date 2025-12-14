@@ -21,10 +21,10 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
+    "_prettier": "prettier .",
     "_prettier:xml": "prettier . --plugin=@prettier/plugin-xml",
     "prettier:check:xml": "npm run _prettier:xml -- --check",
     "prettier:write:xml": "npm run _prettier:xml -- --write",
-    "_prettier": "prettier .",
     "prettier:check": "npm run _prettier -- --check",
     "postprettier:check": "npm run prettier:check:xml",
     "prettier:write": "npm run _prettier -- --write",
