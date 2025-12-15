@@ -64,7 +64,6 @@ jobs:
         with:
           dotnet_project: ${{ matrix.dotnet_project }}
 
-
   Configuration__matrix:
     needs: default
     strategy:
@@ -92,7 +91,6 @@ jobs:
         with:
           dotnet_project: ${{ matrix.dotnet_project }}
           dotnet_configuration: ${{ matrix.Configuration }}
-
 
   project__matrix:
     needs: default
