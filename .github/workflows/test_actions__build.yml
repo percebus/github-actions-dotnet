@@ -16,6 +16,9 @@ concurrency:
 permissions:
   contents: read
 
+env:
+  DOTNET_VERSION: "9.x"
+
 jobs:
   default:
     runs-on: ubuntu-latest
@@ -51,7 +54,7 @@ jobs:
 
       - uses: ./.github/actions/setup
         with:
-          dotnet-version: "9.x"
+          dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - uses: ./.github/actions/restore
         with:
@@ -60,6 +63,34 @@ jobs:
       - uses: ./.github/actions/build
         with:
           dotnet_project: ${{ matrix.dotnet_project }}
+
+  Configuration__matrix:
+    needs: default
+    strategy:
+      max-parallel: 6
+      fail-fast: false
+      matrix:
+        Configuration:
+          - Debug
+          - Release
+
+    runs-on: ubuntu-latest
+    name: "dotnet build: ${{ matrix.Configuration }}"
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      - uses: ./.github/actions/setup
+        with:
+          dotnet-version: "${{ env.DOTNET_VERSION }}"
+
+      - uses: ./.github/actions/restore
+        with:
+          ls_cli_arguments: ${{ matrix.ls_cli_arguments }}
+
+      - uses: ./.github/actions/build
+        with:
+          dotnet_project: ${{ matrix.dotnet_project }}
+          dotnet_configuration: ${{ matrix.Configuration }}
 
   project__matrix:
     needs: default
